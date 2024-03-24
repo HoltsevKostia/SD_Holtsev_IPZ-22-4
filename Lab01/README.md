@@ -26,7 +26,17 @@ In my case i created [IGenerateReportConsole](./ClassLibrary/IGenerateReportCons
 
 I guess it could be a mistake to crate 1 class ReportGenerator with 1 interface. In the future we may need saving this reports to CSV, database, ect. In this case class would be overwhelmed and would violate the principles of SOLID.
 
-## KISS
-### Keep It Simple, Stupid.
-Even a simple piece of a code can be written in a complicated way. But our goal to write understandable code for other programmers.
-My 
+## KISS - Keep It Simple, Stupid.
+### Even a simple piece of a code can be written in a complicated way. But our goal to write understandable code for other programmers.
+My function [PriceDecreaser](./ClassLibrary/Product.cs#L22-L33) is simple and can be understanded easily.
+
+## DRY - Don't Repeat Yourself
+### Yeah, basically, don't repeat yourself.
+You should use functions to avoid code duplication, like i did here. [Funtion](./ClassLibrary/ReportGeneratorText.cs#L11-L14) which i [used](./ClassLibrary/ReportGeneratorConsole.cs#L14) in stead of repeating myself.
+
+## YAGNI - You Ain't Gonna Need It 
+### Don't write code you wasn't asked to (my favourite rule). 
+Your class requires 2 feilds, but your voice inside says "it could be nice to have a few more, class will be more useful!". But if your class need 2 fields to represent all the logic, you do only 2 and go next.
+
+For example, fields of class [Products](./ClassLibrary/Product.cs#L11-L13), i used only most important fields to describe my class, but i could add ton of different descriptions that are not needed to represent knowledge of code principles.
+
