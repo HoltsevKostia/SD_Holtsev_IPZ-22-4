@@ -1,6 +1,6 @@
 ## SPR - single principle responsibility
 ### This principle means: 1 class = 1 task.
-In my case, class [ReportingRegister](Lab01/ClassLibrary/ReportingRegister.cs) is needed for changing information about warehouse - register incoming/outcoming products. 
+In my case, class [ReportingRegister](./ClassLibrary/ReportingRegister.cs) is needed for changing information about warehouse - register incoming/outcoming products. 
 
 It could be a mistake to add method for saving this reports, we'll create another class for it.
 
@@ -8,16 +8,25 @@ It could be a mistake to add method for saving this reports, we'll create anothe
 ### Your entities should be "closed" for changes, but "open" to be extended.
 It's bad practice to touch already working code, as you have to test it again to make sure you didn't brake something.
 
-My abstract class [Money](Lab01/ClassLibrary/Money.cs) has appropriate [function](Lab01/ClassLibrary/Money.cs#L24), that can be overrided in new classes.
+My abstract class [Money](./ClassLibrary/Money.cs) has appropriate [function](./ClassLibrary/Money.cs#L24), that can be overrided in new classes.
 
-So it will be easy to create child classes like [UAH](Lab01/ClassLibrary/UAH.cs).
+So it will be easy to create child classes like [UAH](./ClassLibrary/UAH.cs).
 
 ## LSP - Liskov Substitution Principle
 ### Implemented class should extend, but not replace base class.
-My class [ProductLogger](Lab01/ClassLibrary/ProductLogger.cs) has same logic as base class [Product](Lab01/ClassLibrary/Product.cs), but it also adds logs logic that can be used if needed.
+My class [ProductLogger](./ClassLibrary/ProductLogger.cs) has same logic as base class [Product](./ClassLibrary/Product.cs), but it also adds logs logic that can be used if needed.
 
 ## ISP - interface segregation principle
 ### Your entities shouldn't be related to interfaces they dont implement.
 If interface has 3 funtions that should be implemented ("ultra versetile" interface), but your class don't actually need 1 of this functions - it should be used.
 
 It's better to separate it, and then use each unique interface where it needed.
+
+In my case i created [IGenerateReportConsole](./ClassLibrary/IGenerateReportConsole.cs) and [IGenerateReportText](./ClassLibrary/IGenerateReportText.cs) and then classes like [ReportGeneratorText](./ClassLibrary/ReportGeneratorText.cs) and [ReportGeneratorConsole](./ClassLibrary/ReportGeneratorConsole.cs) implement appropriate interface.
+
+I guess it could be a mistake to crate 1 class ReportGenerator with 1 interface. In the future we may need saving this reports to CSV, database, ect. In this case class would be overwhelmed and would violate the principles of SOLID.
+
+## KISS
+### Keep It Simple, Stupid.
+Even a simple piece of a code can be written in a complicated way. But our goal to write understandable code for other programmers.
+My 
