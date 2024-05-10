@@ -32,6 +32,12 @@ namespace ClassLibrary.Composite
             _children.Add(node);
         }
 
+        public void RemoveChild(LightNode child)
+        {
+            _children.Remove(child);
+        }
+
+
         public override string OuterHTML
         {
             get
