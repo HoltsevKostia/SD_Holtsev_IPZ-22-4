@@ -1,5 +1,5 @@
 ﻿
-namespace ClassLibrary.Composite
+namespace ClassLibrary.LightHTML
 {
     public abstract class LightNode
     {
