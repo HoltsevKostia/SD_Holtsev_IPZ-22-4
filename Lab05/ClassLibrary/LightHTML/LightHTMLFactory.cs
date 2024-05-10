@@ -1,6 +1,6 @@
 ﻿using ClassLibrary.LightHTML;
 
-namespace ClassLibrary.CompositeFlyweight
+namespace ClassLibrary.LightHTML
 {
     public class LightHTMLFactory
     {

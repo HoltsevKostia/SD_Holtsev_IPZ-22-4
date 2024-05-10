@@ -1,6 +1,7 @@
 using ClassLibrary.Iterator;
 using ClassLibrary.Command;
 using ClassLibrary.LightHTML;
+using ClassLibrary.State;
 
 LightElementNode body = new LightElementNode("body", "normal", "closing", new List<string>());
 LightElementNode div = new LightElementNode("div", "normal", "closing", new List<string>());
@@ -44,3 +45,14 @@ foreach (var node in documentBreadthFirst)
     Console.WriteLine(node.OuterHTML);
 }
 
+
+// Створення контексту
+ViewModeContext viewModeContext = new ViewModeContext();
+
+// Встановлення режиму відображення дерева DOM
+viewModeContext.SetState(new TreeViewModeState());
+viewModeContext.Render(document);
+
+// Встановлення режиму відображення коду HTML
+viewModeContext.SetState(new CodeViewModeState());
+viewModeContext.Render(document);
