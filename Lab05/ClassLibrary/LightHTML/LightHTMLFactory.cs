@@ -1,4 +1,4 @@
-﻿using ClassLibrary.Composite;
+﻿using ClassLibrary.LightHTML;
 
 namespace ClassLibrary.CompositeFlyweight
 {

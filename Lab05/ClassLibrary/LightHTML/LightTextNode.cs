@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.Composite
+namespace ClassLibrary.LightHTML
 {
     public class LightTextNode : LightNode
     {
