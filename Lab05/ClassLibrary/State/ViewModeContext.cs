@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClassLibrary.Iterator;
 
 namespace ClassLibrary.State
 {
-    internal class ViewModeContext
+    public class ViewModeContext
     {
+        private IViewModeState _state;
+
+        public void SetState(IViewModeState state)
+        {
+            _state = state;
+        }
+
+        public void Render(HTMLDocument document)
+        {
+            _state.Render(document);
+        }
     }
 }

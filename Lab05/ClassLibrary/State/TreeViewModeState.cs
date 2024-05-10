@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using ClassLibrary.Iterator;
 
 namespace ClassLibrary.State
 {
-    internal class TreeViewModeState
+    public class TreeViewModeState : IViewModeState
     {
+        public void Render(HTMLDocument document)
+        {
+            Console.WriteLine("Rendering HTML document as a tree view:");
+        }
     }
 }
