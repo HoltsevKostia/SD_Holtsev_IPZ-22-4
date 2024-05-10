@@ -43,7 +43,4 @@ foreach (var node in documentBreadthFirst)
 {
     Console.WriteLine(node.OuterHTML);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 241114286bef34ff545b18ff900ad393b8b9cdc3
