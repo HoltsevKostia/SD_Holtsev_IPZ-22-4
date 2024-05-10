@@ -1,7 +1,7 @@
 ﻿using System.Text;
 
 
-namespace ClassLibrary.Composite
+namespace ClassLibrary.LightHTML
 {
     public class LightElementNode : LightNode
     {
@@ -32,11 +32,16 @@ namespace ClassLibrary.Composite
             _children.Add(node);
         }
 
+
         public void RemoveChild(LightNode child)
         {
             _children.Remove(child);
         }
 
+        public List<LightNode> Children
+        {
+            get { return _children; }
+        }
 
         public override string OuterHTML
         {
