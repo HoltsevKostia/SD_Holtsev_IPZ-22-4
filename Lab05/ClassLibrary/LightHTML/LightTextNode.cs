@@ -22,5 +22,20 @@ namespace ClassLibrary.LightHTML
         {
             return $"<p>{_text}</p>";
         }
+
+        public override void OnCreated()
+        {
+            Console.WriteLine($"Element Node Created");
+        }
+
+        public override void OnInserted()
+        {
+            Console.WriteLine($"Element Node Created");
+        }
+
+        public override void OnRemoved()
+        {
+            Console.WriteLine($"Element Node Created");
+        }
     }
 }
