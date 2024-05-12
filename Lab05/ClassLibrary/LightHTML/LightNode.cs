@@ -1,4 +1,6 @@
 ﻿
+using ClassLibrary.Visitor;
+
 namespace ClassLibrary.LightHTML
 {
     public abstract class LightNode
@@ -12,6 +14,9 @@ namespace ClassLibrary.LightHTML
             OnCreated();
             OnInserted();
             OnRemoved();
+        }
+        public virtual void Accept(IElementVisitor visitor)
+        {          
         }
 
         public virtual void OnCreated() { }

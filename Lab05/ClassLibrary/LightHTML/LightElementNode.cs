@@ -1,9 +1,10 @@
-﻿using System.Text;
+﻿using ClassLibrary.Visitor;
+using System.Text;
 
 
 namespace ClassLibrary.LightHTML
 {
-    public class LightElementNode : LightNode
+    public class LightElementNode : LightNode, IVisitable
     {
         private string _tagName;
         private string _displayType;
@@ -11,6 +12,7 @@ namespace ClassLibrary.LightHTML
         private List<string> _classes;
         private List<LightNode> _children;
         private string _text;
+        public string TagName => _tagName;
 
         public LightElementNode(string tagName, string displayType, string closingType, List<string> classes)
         {
@@ -31,7 +33,6 @@ namespace ClassLibrary.LightHTML
         {
             _children.Add(node);
         }
-
 
         public void RemoveChild(LightNode child)
         {
@@ -91,6 +92,16 @@ namespace ClassLibrary.LightHTML
         public override void OnRemoved()
         {
             Console.WriteLine($"Element Node {_tagName} Removed");
+        }
+
+        public override void Accept(IElementVisitor visitor)
+        {
+            visitor.Visit(this);
+
+            foreach (var child in _children)
+            {
+                child.Accept(visitor);
+            }
         }
     }
 }

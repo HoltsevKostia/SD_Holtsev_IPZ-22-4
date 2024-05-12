@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using ClassLibrary.Visitor;
 
 namespace ClassLibrary.LightHTML
 {
-    public class LightTextNode : LightNode
+    public class LightTextNode : LightNode, IVisitable
     {
         private string _text;
 
@@ -36,6 +33,11 @@ namespace ClassLibrary.LightHTML
         public override void OnRemoved()
         {
             Console.WriteLine($"Element Node Created");
+        }
+
+        public void Accept(IElementVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }
