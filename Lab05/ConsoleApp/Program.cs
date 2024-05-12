@@ -2,6 +2,7 @@ using ClassLibrary.Iterator;
 using ClassLibrary.Command;
 using ClassLibrary.LightHTML;
 using ClassLibrary.State;
+using ClassLibrary.Visitor;
 
 LightElementNode body = new LightElementNode("body", "normal", "closing", new List<string>());
 LightElementNode div = new LightElementNode("div", "normal", "closing", new List<string>());
@@ -61,3 +62,16 @@ viewModeContext.Render(document);
 body.ExecuteLifecycle();
 div.ExecuteLifecycle();
 textNode.ExecuteLifecycle();
+
+// тестування Visitor 
+ElementPresenceVisitor visitor = new ElementPresenceVisitor("div");
+body.Accept(visitor);
+
+if (visitor.IsElementPresent())
+{
+    Console.WriteLine("Div element is present in the DOM tree.");
+}
+else
+{
+    Console.WriteLine("Div element is not present in the DOM tree.");
+}
