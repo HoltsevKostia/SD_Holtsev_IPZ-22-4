@@ -56,3 +56,8 @@ viewModeContext.Render(document);
 // Встановлення режиму відображення коду HTML
 viewModeContext.SetState(new CodeViewModeState());
 viewModeContext.Render(document);
+
+// Тестування шаблонного методу
+body.ExecuteLifecycle();
+div.ExecuteLifecycle();
+textNode.ExecuteLifecycle();

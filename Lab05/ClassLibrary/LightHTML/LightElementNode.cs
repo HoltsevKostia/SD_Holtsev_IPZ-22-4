@@ -77,6 +77,21 @@ namespace ClassLibrary.LightHTML
         {
             return $"<{_tagName}>{_text}</{_tagName}>";
         }
+
+        public override void OnCreated()
+        {
+            Console.WriteLine($"Element Node {_tagName} Created");
+        }
+
+        public override void OnInserted()
+        {
+            Console.WriteLine($"Element Node {_tagName} Inserted");
+        }
+
+        public override void OnRemoved()
+        {
+            Console.WriteLine($"Element Node {_tagName} Removed");
+        }
     }
 }
 
