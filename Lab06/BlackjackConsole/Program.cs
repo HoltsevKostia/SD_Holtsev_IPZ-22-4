@@ -1,6 +1,11 @@
 ﻿using ClassLibrary.GameState;
 
-Game game = new Game();
+
 
 // Початок гри
-game.StartGame();
+for(int i = 0; i < 10; i++)
+{
+    Game game = new Game();
+    game.StartGame();
+}
+   

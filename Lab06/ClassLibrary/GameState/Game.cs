@@ -1,5 +1,4 @@
-﻿
-using ClassLibrary.CardDeck;
+﻿using ClassLibrary.CardDeck;
 using ClassLibrary.PlayerHand;
 
 namespace ClassLibrary.GameState
@@ -17,6 +16,8 @@ namespace ClassLibrary.GameState
             dealerHand = new Hand();
             deck = new Deck();
             currentState = new StartState(this);
+            playerHand.BlackjackAchieved += HandlePlayerBlackjack;
+            dealerHand.BlackjackAchieved += HandleDealerBlackjack;
         }
 
         public Hand PlayerHand => playerHand;
@@ -51,6 +52,15 @@ namespace ClassLibrary.GameState
         public void EndGame()
         {
             currentState.EndGame();
+        }
+
+        private void HandlePlayerBlackjack(Hand hand)
+        {
+            Console.WriteLine("Player has achieved Blackjack!");
+        }
+        private void HandleDealerBlackjack(Hand hand)
+        {
+            Console.WriteLine("Dealer has achieved Blackjack!");
         }
     }
 }

@@ -14,9 +14,7 @@ namespace ClassLibrary.GameState
 
         public override void PlayerTurn()
         {
-            string message = "Your turn to choose";
-            Console.ReadLine();
-            message.ConsoleWriteLineSlowly();
+
         }
     }
 }

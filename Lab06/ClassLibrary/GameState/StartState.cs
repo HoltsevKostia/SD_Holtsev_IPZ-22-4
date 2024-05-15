@@ -14,8 +14,8 @@ namespace ClassLibrary.GameState
 
         public override void StartGame()
         {
-            string starting_message = "Starting the game...";
-            starting_message.ConsoleWriteLineSlowly();
+            //string starting_message = "Starting the game...";
+            //starting_message.ConsoleWriteLineSlowly();
 
             game.PlayerHand.AddCard(game.Deck.DrawCard());
             game.PlayerHand.AddCard(game.Deck.DrawCard());
@@ -25,6 +25,7 @@ namespace ClassLibrary.GameState
 
             Console.WriteLine("Player's cards: " + game.PlayerHand.ToString() + " - Total Value: " + game.PlayerHand.CalculateTotalValue());
             Console.WriteLine("Dealer's cards: " + game.DealerHand.GetFirstCard() + ", [Hidden]");
+            game.PlayerHand.IsBlackjack();
         }
     }
 }
