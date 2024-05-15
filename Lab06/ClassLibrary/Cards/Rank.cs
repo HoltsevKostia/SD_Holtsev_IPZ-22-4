@@ -1,4 +1,4 @@
-﻿namespace ClassLibrary.Card
+﻿namespace ClassLibrary.Cards
 {
     public enum Rank
     {

@@ -1,0 +1,41 @@
+﻿using ClassLibrary.Cards;
+
+namespace ClassLibrary.CoRValueHandling
+{
+    public class CardValueCalculator
+    {
+        private ICardValueHandler handlerChain;
+
+        public CardValueCalculator()
+        {
+            // Побудуємо ланцюжок обробників
+            var numberHandler = new NumberCardValueHandler();
+            var faceHandler = new FaceCardValueHandler();
+            var aceHandler = new AceCardValueHandler();
+
+            numberHandler.SetNext(faceHandler);
+            faceHandler.SetNext(aceHandler);
+
+            handlerChain = numberHandler;
+        }
+
+        public int CalculateTotalValue(List<Card> cards)
+        {
+            int total = 0;
+            foreach (var card in cards)
+            {
+                total += handlerChain.Handle(card, total);
+            }
+
+            // Додаткова логіка для коригування значення туза
+            int aceCount = cards.Count(c => c.Rank == Rank.Ace);
+            while (total > 21 && aceCount > 0)
+            {
+                total -= 10;
+                aceCount--;
+            }
+
+            return total;
+        }
+    }
+}

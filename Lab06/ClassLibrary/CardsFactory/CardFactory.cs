@@ -1,6 +1,7 @@
-﻿using ClassLibrary.Card;
+﻿
+using ClassLibrary.Cards;
 
-namespace ClassLibrary.Factory
+namespace ClassLibrary.CardsFactory
 {
     public static class CardFactory
     {
