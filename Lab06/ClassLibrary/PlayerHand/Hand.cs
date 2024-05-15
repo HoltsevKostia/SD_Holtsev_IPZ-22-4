@@ -18,6 +18,11 @@ namespace ClassLibrary.PlayerHand
             cards.Add(card);
         }
 
+        public Card GetFirstCard()
+        {
+            return cards.FirstOrDefault();          
+        }
+
         public int CalculateTotalValue()
         {
             return calculator.CalculateTotalValue(cards);
