@@ -1,12 +1,13 @@
 ﻿using ClassLibrary.Cards;
+using ClassLibrary.CoRValueHandling;
 
-namespace ClassLibrary.CoRValueHandling
+namespace ClassLibrary.PlayerHand
 {
-    public class CardValueCalculator
+    public class HandValueCalculator
     {
         private ICardValueHandler handlerChain;
 
-        public CardValueCalculator()
+        public HandValueCalculator()
         {
             // Побудуємо ланцюжок обробників
             var numberHandler = new NumberCardValueHandler();

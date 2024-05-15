@@ -1,17 +1,16 @@
 ﻿using ClassLibrary.Cards;
-using ClassLibrary.CoRValueHandling;
 
 namespace ClassLibrary.PlayerHand
 {
     public class Hand
     {
         private List<Card> cards;
-        private CardValueCalculator calculator;
+        private HandValueCalculator calculator;
 
         public Hand()
         {
             cards = new List<Card>();
-            calculator = new CardValueCalculator();
+            calculator = new HandValueCalculator();
         }
 
         public void AddCard(Card card)
