@@ -1,17 +1,37 @@
 ﻿using ClassLibrary.Cards;
-using ClassLibrary.CoRValueHandling;
+using ClassLibrary.Observer;
 
-namespace ClassLibrary.PlayerHand
+namespace ClassLibrary.PlayerHand 
 {
-    public class Hand
+    public class Hand : IObservable
     {
         private List<Card> cards;
         public int Score { get; private set; }
+        private List<IObserver> observers = new List<IObserver>();
 
         public Hand()
         {
             cards = new List<Card>();
         }
+
+        public void AddObserver(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void RemoveObserver(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void NotifyObservers()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update(this);
+            }
+        }
+
 
         public void AddCard(Card card)
         {
