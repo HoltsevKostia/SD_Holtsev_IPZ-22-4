@@ -1,7 +1,6 @@
 ﻿using ClassLibrary.Cards;
-using ClassLibrary.CoRValueHandling;
 
-namespace ClassLibrary.PlayerHand
+namespace ClassLibrary.CoRValueHandling
 {
     public class HandValueCalculator
     {

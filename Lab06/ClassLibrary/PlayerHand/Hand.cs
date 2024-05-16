@@ -1,5 +1,5 @@
 ﻿using ClassLibrary.Cards;
-
+using ClassLibrary.CoRValueHandling;
 
 namespace ClassLibrary.PlayerHand
 {
@@ -32,6 +32,11 @@ namespace ClassLibrary.PlayerHand
         public override string ToString()
         {
             return string.Join(", ", cards);
+        }
+
+        public bool IsBusted()
+        {
+            return calculator.CalculateTotalValue(cards) > 21;
         }
     }
 }
