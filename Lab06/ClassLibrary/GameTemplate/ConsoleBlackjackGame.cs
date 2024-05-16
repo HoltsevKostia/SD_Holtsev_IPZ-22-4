@@ -26,7 +26,7 @@ namespace ClassLibrary.GameTemplate
             bool playerContinues = true;
             while (playerContinues)
             {
-                Console.WriteLine("Your hand: " + playerHand);
+                Console.WriteLine("Your hand: " + playerHand + "|| Score: " + playerHand.Score);
                 Console.WriteLine("Dealer's visible card: " + dealerHand.GetFirstCard());
                 Console.Write("Do you want to hit or stand? (h/s): ");
                 string input = Console.ReadLine();
@@ -48,7 +48,7 @@ namespace ClassLibrary.GameTemplate
 
         protected override void DealerTurn()
         {
-            while (dealerHand.CalculateTotalValue() < 17)
+            while (dealerHand.Score < 17)
             {
                 dealerHand.AddCard(deck.DrawCard());
             }
@@ -56,18 +56,18 @@ namespace ClassLibrary.GameTemplate
 
         protected override void DetermineWinner()
         {
-            Console.WriteLine("Your hand: " + playerHand);
-            Console.WriteLine("Dealer's hand: " + dealerHand);
+            Console.WriteLine("Your hand: " + playerHand + "|| Score: " + playerHand.Score);
+            Console.WriteLine("Dealer's hand: " + dealerHand + "|| Score: " + dealerHand.Score);
 
             if (playerHand.IsBusted())
             {
                 Console.WriteLine("You lose!");
             }
-            else if (dealerHand.IsBusted() || playerHand.CalculateTotalValue() > dealerHand.CalculateTotalValue())
+            else if (dealerHand.IsBusted() || playerHand.Score > dealerHand.Score)
             {
                 Console.WriteLine("You win!");
             }
-            else if (playerHand.CalculateTotalValue() < dealerHand.CalculateTotalValue())
+            else if (playerHand.Score < dealerHand.Score)
             {
                 Console.WriteLine("Dealer wins!");
             }

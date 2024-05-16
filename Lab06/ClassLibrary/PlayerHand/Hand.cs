@@ -6,17 +6,17 @@ namespace ClassLibrary.PlayerHand
     public class Hand
     {
         private List<Card> cards;
-        private HandValueCalculator calculator;
+        public int Score { get; private set; }
 
         public Hand()
         {
             cards = new List<Card>();
-            calculator = new HandValueCalculator();
         }
 
         public void AddCard(Card card)
         {
             cards.Add(card);
+            CalculateScore();
         }
 
         public Card GetFirstCard()
@@ -24,9 +24,16 @@ namespace ClassLibrary.PlayerHand
             return cards.FirstOrDefault();          
         }
 
-        public int CalculateTotalValue()
+        private void CalculateScore()
         {
-            return calculator.CalculateTotalValue(cards);
+            int aceCount = cards.Count(card => card.Rank == Rank.Ace);
+            Score = cards.Sum(card => (int)card.Rank);
+
+            while (Score > 21 && aceCount > 0)
+            {
+                Score -= 10;
+                aceCount--;
+            }
         }
 
         public override string ToString()
@@ -36,7 +43,7 @@ namespace ClassLibrary.PlayerHand
 
         public bool IsBusted()
         {
-            return calculator.CalculateTotalValue(cards) > 21;
+            return Score > 21;
         }
     }
 }
