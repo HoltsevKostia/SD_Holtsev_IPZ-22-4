@@ -1,6 +1,18 @@
 ﻿using ClassLibrary.GameTemplate;
 
-Console.WriteLine("Welcome to Blackjack!");
+bool playAgain = true;
 
-BlackjackGame game = new ConsoleBlackjackGame();
-game.PlayGame();
+while (playAgain)
+{
+    Console.Clear();
+    Console.WriteLine("Welcome to Blackjack!");
+
+    BlackjackGame game = new ConsoleBlackjackGame();
+    game.PlayGame();
+
+    Console.WriteLine("Game over. Would you like to play again? (y/n)");
+    string input = Console.ReadLine();
+    playAgain = input.ToLower() == "y";
+}
+
+Console.WriteLine("Thanks for playing!");

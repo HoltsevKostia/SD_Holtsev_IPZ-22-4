@@ -27,16 +27,11 @@ namespace ClassLibrary.GameTemplate
 
             // Перевірка, чи є Blackjack у гравця
             observer.Update(playerHand);
-
-            if (observer.GameEnded)
-            {
-                DetermineWinner();
-            }
         }
 
         protected override void PlayerTurn()
         {
-            if (observer.GameEnded)
+            if (!observer.СontinueGame)
             {
                 return;
             }
@@ -53,22 +48,18 @@ namespace ClassLibrary.GameTemplate
                 {
                     playerHand.AddCard(deck.DrawCard());
                     observer.Update(playerHand);
-                    if (playerHand.IsBusted())
-                    {
-                        Console.WriteLine("You busted!");
-                        playerContinues = false;
-                    }
+                    playerContinues = observer.СontinueGame;
                 }
                 else
                 {
-                    playerContinues = false;
+                    playerContinues = !observer.СontinueGame;
                 }
             }
         }
 
         protected override void DealerTurn()
         {
-            if (observer.GameEnded)
+            if (!observer.СontinueGame)
             {
                 return;
             }
