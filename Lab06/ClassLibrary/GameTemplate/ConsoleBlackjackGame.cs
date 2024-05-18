@@ -2,12 +2,20 @@
 using ClassLibrary.CardDeck;
 using ClassLibrary.Observer;
 using ClassLibrary.PlayerHand;
+using ClassLibrary.Players;
 
 namespace ClassLibrary.GameTemplate
 {
     public class ConsoleBlackjackGame : BlackjackGame
     {
         private BlackjackObserver observer = new BlackjackObserver();
+        private Player currentPlayer;
+        private PlayerManager playerManager;
+        public ConsoleBlackjackGame(Player player, PlayerManager manager)
+        {
+            currentPlayer = player;
+            playerManager = manager;
+        }
         protected override void InitializeGame()
         {
             deck = new Deck();
@@ -73,23 +81,40 @@ namespace ClassLibrary.GameTemplate
         {
             DisplayHands();
 
+            string resultMessage;
+            int scoreChange;
+
             if (playerHand.IsBusted())
             {
-                Console.WriteLine("You lose!");
+                resultMessage = "You lose!";
+                scoreChange = -1;
             }
             else if (dealerHand.IsBusted() || playerHand.Score > dealerHand.Score)
             {
-                Console.WriteLine("You win!");
+                resultMessage = "You win!";
+                scoreChange = 2;
             }
             else if (playerHand.Score < dealerHand.Score)
             {
-                Console.WriteLine("Dealer wins!");
+                resultMessage = "Dealer wins!";
+                scoreChange = -1;
             }
             else
             {
-                Console.WriteLine("It's a tie!");
+                resultMessage = "It's a tie!";
+                scoreChange = 1;
+            }
+
+            Console.WriteLine(resultMessage);
+
+            if (currentPlayer != null)
+            {
+                currentPlayer.Score += scoreChange;
+                Console.WriteLine($"Your score: {currentPlayer.Score}");
+                playerManager.UpdatePlayerScore(currentPlayer);
             }
         }
+     
         private void DisplayHands(bool isDealerCardHidden=false)
         {
             const int padding = 30;

@@ -1,30 +1,34 @@
 ﻿
+using ClassLibrary.Players;
+
 namespace ClassLibrary.GameStates
 {
     public class MainMenuState : IGameState
     {
         public void Handle(GameContext context)
         {
-            Console.WriteLine();
-            Console.WriteLine("1. Start Game");
-            Console.WriteLine("2. Show High Scores");
+            Console.Clear();
+            Console.WriteLine("Welcome to Blackjack!");
+            Console.WriteLine("1. Play with login and leaderboard");
+            Console.WriteLine("2. Play without login");
             Console.WriteLine("3. Exit");
-            Console.Write("Select an option: ");
+            Console.Write("Choose an option: ");
 
-            string input = Console.ReadLine();
-            switch (input)
+            string choice = Console.ReadLine();
+            switch (choice)
             {
                 case "1":
-                    context.SetState(new PlayGameState());
+                    context.SetState(new LoginState());
                     break;
                 case "2":
-                    context.SetState(new HighScoreState());
+                    context.SetState(new GameMenuState());
                     break;
                 case "3":
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("Invalid option. Try again.");
+                    Console.WriteLine("Invalid choice. Try again.");
+                    context.SetState(new MainMenuState());
                     break;
             }
         }
