@@ -1,12 +1,17 @@
-﻿namespace ClassLibrary.GameStates
+﻿using ClassLibrary.Players;
+
+namespace ClassLibrary.GameStates
 {
     public class GameContext
     {
         private IGameState _state;
+        public Player CurrentPlayer { get; set; }
+        public PlayerManager PlayerManager { get; set; }
 
         public GameContext()
         {
-            _state = new MainMenuState();
+            PlayerManager = new PlayerManager();
+            _state = new LoginState();
         }
 
         public void SetState(IGameState state)
@@ -19,4 +24,5 @@
             _state.Handle(this);
         }
     }
+
 }
