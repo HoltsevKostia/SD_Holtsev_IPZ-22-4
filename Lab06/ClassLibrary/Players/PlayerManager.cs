@@ -8,8 +8,8 @@ namespace ClassLibrary.Players
 
         public PlayerManager()
         {
-            //var mongoConnection = MongoConnection.Instance;
-            //playerCollection = mongoConnection.GetCollection<Player>("players");
+            var mongoConnection = MongoConnection.Instance;
+            playerCollection = mongoConnection.GetCollection<Player>("players");
         }
 
         public Player AuthenticatePlayer(string name, string password)
