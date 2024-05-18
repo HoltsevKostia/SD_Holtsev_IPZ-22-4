@@ -5,6 +5,7 @@ namespace ClassLibrary.GameStates
     {
         public void Handle(GameContext context)
         {
+            Console.WriteLine();
             Console.WriteLine("1. Start Game");
             Console.WriteLine("2. Show High Scores");
             Console.WriteLine("3. Exit");

@@ -39,10 +39,10 @@ namespace ClassLibrary.GameTemplate
             bool playerContinues = true;
             while (playerContinues)
             {
-                Console.WriteLine("Your hand: " + playerHand + "|| Score: " + playerHand.Score);
-                Console.WriteLine("Dealer's visible card: " + dealerHand.GetFirstCard());
+                DisplayHands(true);
                 Console.Write("Do you want to hit or stand? (h/s): ");
                 string input = Console.ReadLine();
+                Console.WriteLine();
                 if (input.ToLower() == "h")
                 {
                     playerHand.AddCard(deck.DrawCard());
@@ -71,8 +71,7 @@ namespace ClassLibrary.GameTemplate
 
         protected override void DetermineWinner()
         {
-            Console.WriteLine("Your hand: " + playerHand + "|| Score: " + playerHand.Score);
-            Console.WriteLine("Dealer's hand: " + dealerHand + "|| Score: " + dealerHand.Score);
+            DisplayHands();
 
             if (playerHand.IsBusted())
             {
@@ -90,6 +89,26 @@ namespace ClassLibrary.GameTemplate
             {
                 Console.WriteLine("It's a tie!");
             }
+        }
+        private void DisplayHands(bool isDealerCardHidden=false)
+        {
+            const int padding = 30;
+            string playerHandString = "Your hand: " + string.Join(", ", playerHand);
+            string dealerHandString;
+
+            Console.WriteLine(playerHandString.PadRight(Console.WindowWidth - padding) + "|| Score: " + playerHand.Score);
+
+            if (isDealerCardHidden) 
+            {
+                dealerHandString = "Dealer's visible card: " + dealerHand.GetFirstCard();
+                Console.WriteLine(dealerHandString.PadRight(Console.WindowWidth - padding));
+            }
+            else
+            {
+                dealerHandString = "Dealer's hand: " + string.Join(", ", dealerHand);
+                Console.WriteLine(dealerHandString.PadRight(Console.WindowWidth - padding) + "|| Score: " + dealerHand.Score);
+            }                    
+            Console.WriteLine();
         }
     }
 }
