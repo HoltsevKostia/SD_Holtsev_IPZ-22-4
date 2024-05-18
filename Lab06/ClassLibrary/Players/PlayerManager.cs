@@ -36,5 +36,13 @@ namespace ClassLibrary.Players
             var update = Builders<Player>.Update.Set(p => p.Score, player.Score);
             playerCollection.UpdateOne(filter, update);
         }
+
+        public List<Player> GetTopPlayers(int top = 10)
+        {
+            return playerCollection.Find(FilterDefinition<Player>.Empty)
+                                     .Sort(Builders<Player>.Sort.Descending("Score"))
+                                     .Limit(top)
+                                     .ToList();
+        }
     }
 }
