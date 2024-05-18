@@ -81,46 +81,40 @@ namespace ClassLibrary.GameTemplate
         {
             DisplayHands();
 
+            string resultMessage;
+            int scoreChange;
+
             if (playerHand.IsBusted())
             {
-                Console.WriteLine("You lose! (Busted)");
-                if (currentPlayer != null)
-                {
-                    currentPlayer.Score -= 1;
-                    Console.WriteLine($"Your score: {currentPlayer.Score}");
-                }
+                resultMessage = "You lose!";
+                scoreChange = -1;
             }
             else if (dealerHand.IsBusted() || playerHand.Score > dealerHand.Score)
             {
-                Console.WriteLine("You win!");
-                if (currentPlayer != null) 
-                { 
-                    currentPlayer.Score += 2; 
-                    Console.WriteLine($"Your score: {currentPlayer.Score}"); 
-                }
+                resultMessage = "You win!";
+                scoreChange = 2;
             }
             else if (playerHand.Score < dealerHand.Score)
             {
-                Console.WriteLine("Dealer wins!");
-                if (currentPlayer != null)
-                {
-                    currentPlayer.Score -= 1;
-                    Console.WriteLine($"Your score: {currentPlayer.Score}");
-                }
+                resultMessage = "Dealer wins!";
+                scoreChange = -1;
             }
             else
             {
-                Console.WriteLine("It's a tie!");
-                if (currentPlayer != null)
-                {
-                    currentPlayer.Score += 1;
-                    Console.WriteLine($"Your score: {currentPlayer.Score}");
-                }
+                resultMessage = "It's a tie!";
+                scoreChange = 1;
             }
 
-            // Оновлення інформації про гравця в базі даних
-            if (currentPlayer != null) playerManager.UpdatePlayerScore(currentPlayer);
+            Console.WriteLine(resultMessage);
+
+            if (currentPlayer != null)
+            {
+                currentPlayer.Score += scoreChange;
+                Console.WriteLine($"Your score: {currentPlayer.Score}");
+                playerManager.UpdatePlayerScore(currentPlayer);
+            }
         }
+     
         private void DisplayHands(bool isDealerCardHidden=false)
         {
             const int padding = 30;

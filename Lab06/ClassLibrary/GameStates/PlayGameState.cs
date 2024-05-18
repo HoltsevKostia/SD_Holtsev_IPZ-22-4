@@ -9,7 +9,6 @@ namespace ClassLibrary.GameStates
         private PlayerManager playerManager;
         private BlackjackGame game;
 
-
         public PlayGameState(Player player, PlayerManager manager)
         {
             currentPlayer = player;

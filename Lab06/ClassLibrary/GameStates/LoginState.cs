@@ -1,4 +1,5 @@
 ﻿
+using ClassLibrary.Extensions;
 using ClassLibrary.Players;
 
 namespace ClassLibrary.GameStates
@@ -9,7 +10,6 @@ namespace ClassLibrary.GameStates
 
         public void Handle(GameContext context)
         {
-            Console.Clear();
             Console.WriteLine("Login");
             Console.Write("Enter username: ");
             string username = Console.ReadLine();
@@ -20,7 +20,9 @@ namespace ClassLibrary.GameStates
 
             if (player != null)
             {
-                Console.WriteLine("Login successful. Welcome, " + player.Name + "!");
+                Console.Write("Login successful. ");
+                string message = "Welcome, " + player.Name + "!";
+                message.ConsoleWriteLineSlowly();
                 context.CurrentPlayer = player;
                 context.SetState(new GameMenuState());
             }
@@ -29,7 +31,8 @@ namespace ClassLibrary.GameStates
                 Player existingPlayer = playerManager.FindPlayer(username);
                 if (existingPlayer == null)
                 {
-                    Console.WriteLine("No such user found. Creating new user...");
+                    string message = "No such user found. Creating new user...";
+                    message.ConsoleWriteLineSlowly();
                     playerManager.RegisterPlayer(username, password);
                     context.CurrentPlayer = playerManager.AuthenticatePlayer(username, password);
                     context.SetState(new GameMenuState());
