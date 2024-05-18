@@ -44,6 +44,7 @@ namespace ClassLibrary.PlayerHand
             return cards.FirstOrDefault();          
         }
 
+        // винести в окремий клас 
         private void CalculateScore()
         {
             int aceCount = cards.Count(card => card.Rank == Rank.Ace);
@@ -61,6 +62,7 @@ namespace ClassLibrary.PlayerHand
             return string.Join(", ", cards);
         }
 
+        // винести в окремий клас
         public bool IsBusted()
         {
             return Score > 21;

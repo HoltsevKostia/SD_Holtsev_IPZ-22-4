@@ -1,4 +1,5 @@
-﻿using ClassLibrary.GameTemplate;
+﻿using ClassLibrary.Extensions;
+using ClassLibrary.GameTemplate;
 
 bool playAgain = true;
 
@@ -14,5 +15,5 @@ while (playAgain)
     string input = Console.ReadLine();
     playAgain = input.ToLower() == "y";
 }
-
-Console.WriteLine("Thanks for playing!");
+string message = "Thanks for playing!";
+message.ConsoleWriteLineSlowly();

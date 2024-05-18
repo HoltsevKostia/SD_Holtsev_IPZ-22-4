@@ -42,7 +42,6 @@ namespace ClassLibrary.GameTemplate
                 Console.WriteLine("Your hand: " + playerHand + "|| Score: " + playerHand.Score);
                 Console.WriteLine("Dealer's visible card: " + dealerHand.GetFirstCard());
                 Console.Write("Do you want to hit or stand? (h/s): ");
-                // **Able to refactor** - потрібно додати обробку помилок, які можуть виникнути при "спілкуванні" з користувачем
                 string input = Console.ReadLine();
                 if (input.ToLower() == "h")
                 {

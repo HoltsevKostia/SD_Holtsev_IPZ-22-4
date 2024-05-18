@@ -3,7 +3,7 @@ namespace ClassLibrary.Extensions
 {
     public static class ConsoleExtensions
     {
-        public static void ConsoleWriteSlowly(this string text, int delayMilliseconds = 100)
+        public static void ConsoleWriteSlowly(this string text, int delayMilliseconds = 80)
         {
             foreach (char c in text)
             {
@@ -12,7 +12,7 @@ namespace ClassLibrary.Extensions
             }
         }
 
-        public static void ConsoleWriteLineSlowly(this string text, int delayMilliseconds = 100)
+        public static void ConsoleWriteLineSlowly(this string text, int delayMilliseconds = 80)
         {
             text.ConsoleWriteSlowly(delayMilliseconds);
             Console.WriteLine();
