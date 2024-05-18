@@ -11,7 +11,7 @@ namespace ClassLibrary.GameStates
         public GameContext()
         {
             PlayerManager = new PlayerManager();
-            _state = new LoginState();
+            _state = new MainMenuState();
         }
 
         public void SetState(IGameState state)

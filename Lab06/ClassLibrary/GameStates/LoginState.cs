@@ -22,7 +22,7 @@ namespace ClassLibrary.GameStates
             {
                 Console.WriteLine("Login successful. Welcome, " + player.Name + "!");
                 context.CurrentPlayer = player;
-                context.SetState(new MainMenuState());
+                context.SetState(new GameMenuState());
             }
             else
             {
@@ -32,7 +32,7 @@ namespace ClassLibrary.GameStates
                     Console.WriteLine("No such user found. Creating new user...");
                     playerManager.RegisterPlayer(username, password);
                     context.CurrentPlayer = playerManager.AuthenticatePlayer(username, password);
-                    context.SetState(new MainMenuState());
+                    context.SetState(new GameMenuState());
                 }
                 else
                 {

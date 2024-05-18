@@ -9,7 +9,7 @@
             Console.WriteLine("High Scores");
             //метод для виведення таблиці рекордів
 
-            context.SetState(new MainMenuState());
+            context.SetState(new GameMenuState());
         }
     }
 }

@@ -2,12 +2,20 @@
 using ClassLibrary.CardDeck;
 using ClassLibrary.Observer;
 using ClassLibrary.PlayerHand;
+using ClassLibrary.Players;
 
 namespace ClassLibrary.GameTemplate
 {
     public class ConsoleBlackjackGame : BlackjackGame
     {
         private BlackjackObserver observer = new BlackjackObserver();
+        private Player currentPlayer;
+        private PlayerManager playerManager;
+        public ConsoleBlackjackGame(Player player, PlayerManager manager)
+        {
+            currentPlayer = player;
+            playerManager = manager;
+        }
         protected override void InitializeGame()
         {
             deck = new Deck();
@@ -75,20 +83,27 @@ namespace ClassLibrary.GameTemplate
 
             if (playerHand.IsBusted())
             {
-                Console.WriteLine("You lose!");
+                Console.WriteLine("You lose! (Busted)");
+                if (currentPlayer != null) currentPlayer.Score -= 1;
             }
             else if (dealerHand.IsBusted() || playerHand.Score > dealerHand.Score)
             {
                 Console.WriteLine("You win!");
+                if (currentPlayer != null) currentPlayer.Score += 2;
             }
             else if (playerHand.Score < dealerHand.Score)
             {
                 Console.WriteLine("Dealer wins!");
+                if (currentPlayer != null) currentPlayer.Score -= 1;
             }
             else
             {
                 Console.WriteLine("It's a tie!");
+                if(currentPlayer!=null) currentPlayer.Score += 1;
             }
+
+            // Оновлення інформації про гравця в базі даних
+            if (currentPlayer != null) playerManager.UpdatePlayerScore(currentPlayer);
         }
         private void DisplayHands(bool isDealerCardHidden=false)
         {
