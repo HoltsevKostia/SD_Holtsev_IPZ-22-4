@@ -1,19 +1,8 @@
-﻿using ClassLibrary.Extensions;
-using ClassLibrary.GameTemplate;
+﻿using ClassLibrary.GameStates;
 
-bool playAgain = true;
+GameContext context = new GameContext();
 
-while (playAgain)
+while (true)
 {
-    Console.Clear();
-    Console.WriteLine("Welcome to Blackjack!");
-
-    BlackjackGame game = new ConsoleBlackjackGame();
-    game.PlayGame();
-
-    Console.WriteLine("Game over. Would you like to play again? (y/n)");
-    string input = Console.ReadLine();
-    playAgain = input.ToLower() == "y";
+    context.Request();
 }
-string message = "Thanks for playing!";
-message.ConsoleWriteLineSlowly();

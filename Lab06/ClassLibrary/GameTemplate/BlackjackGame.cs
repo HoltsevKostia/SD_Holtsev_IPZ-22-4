@@ -10,7 +10,7 @@ namespace ClassLibrary.GameTemplate
         protected Hand playerHand;
         protected Hand dealerHand;
 
-        public void PlayGame()
+        public void Play()
         {
             InitializeGame();
             DealInitialCards();
