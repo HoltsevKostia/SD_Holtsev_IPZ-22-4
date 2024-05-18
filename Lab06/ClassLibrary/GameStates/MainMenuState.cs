@@ -5,7 +5,7 @@ namespace ClassLibrary.GameStates
     {
         public void Handle(GameContext context)
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("1. Start Game");
             Console.WriteLine("2. Show High Scores");
             Console.WriteLine("3. Exit");
@@ -15,7 +15,7 @@ namespace ClassLibrary.GameStates
             switch (input)
             {
                 case "1":
-                    context.SetState(new PlayGameState());
+                    context.SetState(new PlayGameState(context.CurrentPlayer, context.PlayerManager));
                     break;
                 case "2":
                     context.SetState(new HighScoreState());
