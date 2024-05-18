@@ -84,22 +84,38 @@ namespace ClassLibrary.GameTemplate
             if (playerHand.IsBusted())
             {
                 Console.WriteLine("You lose! (Busted)");
-                if (currentPlayer != null) currentPlayer.Score -= 1;
+                if (currentPlayer != null)
+                {
+                    currentPlayer.Score -= 1;
+                    Console.WriteLine($"Your score: {currentPlayer.Score}");
+                }
             }
             else if (dealerHand.IsBusted() || playerHand.Score > dealerHand.Score)
             {
                 Console.WriteLine("You win!");
-                if (currentPlayer != null) currentPlayer.Score += 2;
+                if (currentPlayer != null) 
+                { 
+                    currentPlayer.Score += 2; 
+                    Console.WriteLine($"Your score: {currentPlayer.Score}"); 
+                }
             }
             else if (playerHand.Score < dealerHand.Score)
             {
                 Console.WriteLine("Dealer wins!");
-                if (currentPlayer != null) currentPlayer.Score -= 1;
+                if (currentPlayer != null)
+                {
+                    currentPlayer.Score -= 1;
+                    Console.WriteLine($"Your score: {currentPlayer.Score}");
+                }
             }
             else
             {
                 Console.WriteLine("It's a tie!");
-                if(currentPlayer!=null) currentPlayer.Score += 1;
+                if (currentPlayer != null)
+                {
+                    currentPlayer.Score += 1;
+                    Console.WriteLine($"Your score: {currentPlayer.Score}");
+                }
             }
 
             // Оновлення інформації про гравця в базі даних
