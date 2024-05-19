@@ -2,15 +2,6 @@
 
 This is a simple console-based Blackjack game developed in C#. The project demonstrates the use of various programming principles, design patterns, and refactoring techniques to create a clean, maintainable, and extendable codebase.
 
-## Table of Contents
-
-- [Getting Started](#getting-started)
-- [Features](#features)
-- [Usage](#usage)
-- [Programming Principles](#programming-principles)
-- [Design Patterns](#design-patterns)
-- [Refactoring Techniques](#refactoring-techniques)
-
 ## Getting Started
 
 To launch the project, install the MongoDB.Driver package in the Nuget manager for ClassLibrary.
@@ -32,31 +23,54 @@ When the game starts, you have the option to either play with a login system or 
 ### Single Responsibility Principle (SRP)
 
 Each class in the project has a single responsibility. For example:
-- [`Deck`]() handles card operations.
-- `Hand` manages the player's or dealer's hands.
-- `PlayerManager` deals with database operations.
+- [`Deck`](/Lab06/ClassLibrary/CardDeck/Deck.cs) handles card operations.
+- [`Hand`](/Lab06/ClassLibrary/PlayerHand/Hand.cs) manages the player's or dealer's hands.
+- [`PlayerManager`](/Lab06/ClassLibrary/Players/PlayerManager.cs) deals with database operations.
 
 ### Open/Closed Principle (OCP)
 
-The design allows for easy extension of the game's functionality without modifying existing code. For instance, new game states can be added by implementing the `IGameState` interface.
+The design allows for easy extension of the game's functionality without modifying existing code. For instance, new game states can be added by implementing the [`IGameState`](/Lab06/ClassLibrary/GameStates/IGameState.cs) interface.
 
 ### Liskov Substitution Principle (LSP)
 
-All derived classes can be used interchangeably with their base classes. For example, different game states like `MenuState` and `GameState` can be used interchangeably via the `IGameState` interface.
+All derived classes can be used interchangeably with their base classes. For example, different game states like [`MainMenuState`](/Lab06/ClassLibrary/GameStates/MainMenuState.cs) and [`PlayGameState`](/Lab06/ClassLibrary/GameStates/PlayGameState.cs) can be used interchangeably via the [`IGameState`](/Lab06/ClassLibrary/GameStates/IGameState.cs) interface.
 
 ### Interface Segregation Principle (ISP)
 
-Interfaces are designed to be small and specific to avoid forcing classes to implement methods they do not use. For example, `IObserver` and `IObservable` interfaces are focused on the observer pattern functionality.
+Interfaces are designed to be small and specific to avoid forcing classes to implement methods they do not use. For example, [`IObserver`](/Lab06/ClassLibrary/Observer/IObserver.cs) and [`IObservable`](/Lab06/ClassLibrary/Observer/IObservable.cs) interfaces are focused on the observer pattern functionality.
 
 ### Dependency Inversion Principle (DIP)
 
-High-level modules do not depend on low-level modules but on abstractions. The `GameContext` depends on the `IGameState` interface rather than concrete implementations of game states.
+High-level modules do not depend on low-level modules but on abstractions. The [`GameContext`](/Lab06/ClassLibrary/GameStates/GameContext.cs) depends on the [`IGameState`](/Lab06/ClassLibrary/GameStates/IGameState.cs) interface rather than concrete implementations of game states.
 
 ## Design Patterns
 
 ### Singleton
 
-The `PlayerManager` class is implemented as a singleton to ensure a single instance handles database operations, providing a global point of access.
+The [`MongoConnection`](/Lab06/ClassLibrary/MongoConnection.cs) class is implemented as a singleton to ensure a single instance handles database operations, providing a global point of access.
 
-```csharp
-// PlayerManager.cs
+### Template Method
+
+The `BlackjackGame` class defines the skeleton of the game process using the template method pattern. Subclasses like `ConsoleBlackjackGame` override specific steps without changing the overall algorithm.
+
+### State
+
+The state pattern is used to manage different states of the game (e.g., menu, gameplay, high score display). The `GameContext` class changes its behavior based on the current state.
+
+### Observer
+
+The observer pattern is used to monitor the game state, such as checking for a blackjack or a bust. The `Hand` class notifies observers about changes in the hand's state.
+
+## Refactoring Techniques
+
+### Extract Method
+
+Complex methods were broken down into smaller, more manageable methods. For example, the `DetermineWinner` method was refactored to separate the logic for updating the player score.
+
+### Encapsulate Collection
+
+The `Hand` class encapsulates the collection of cards, providing methods to add cards and calculate the score, ensuring the internal state is not exposed directly.
+
+### Replace Magic Number with Symbolic Constant
+
+Magic numbers in the score calculation logic were replaced with symbolic constants to improve readability and maintainability.
