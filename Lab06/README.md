@@ -51,26 +51,35 @@ The [`MongoConnection`](/Lab06/ClassLibrary/MongoConnection.cs) class is impleme
 
 ### Template Method
 
-The `BlackjackGame` class defines the skeleton of the game process using the template method pattern. Subclasses like `ConsoleBlackjackGame` override specific steps without changing the overall algorithm.
+The [`BlackjackGame`](/Lab06/ClassLibrary/GameTemplate/BlackjackGame.cs) class defines the skeleton of the game process using the template method pattern. Subclasses like [`ConsoleBlackjackGame`](/Lab06/ClassLibrary/GameTemplate/ConsoleBlackjackGame.cs) override specific steps without changing the overall algorithm.
 
 ### State
 
-The state pattern is used to manage different states of the game (e.g., menu, gameplay, high score display). The `GameContext` class changes its behavior based on the current state.
+The state pattern is used to manage different states of the game (e.g., menu, gameplay, high score display). The [`GameContext`](/Lab06/ClassLibrary/GameStates/GameContext.cs) class changes its behavior based on the current state.
 
 ### Observer
 
-The observer pattern is used to monitor the game state, such as checking for a blackjack or a bust. The `Hand` class notifies observers about changes in the hand's state.
+The observer pattern is used to monitor the game state, such as checking for a blackjack or a bust. The [`Hand`](/Lab06/ClassLibrary/PlayerHand/Hand.cs) class notifies observers about changes in the hand's state. Other connected classes to observer implementation - [Observer](/Lab06/ClassLibrary/Observer)
 
 ## Refactoring Techniques
 
 ### Extract Method
 
-Complex methods were broken down into smaller, more manageable methods. For example, the `DetermineWinner` method was refactored to separate the logic for updating the player score.
+Complex methods were broken down into smaller, more manageable methods. For example, the [`DetermineWinner`](/Lab06/ClassLibrary/GameTemplate/ConsoleBlackjackGame.cs#L80-L116) method was refactored to separate the logic for updating the player score.
 
 ### Encapsulate Collection
 
-The `Hand` class encapsulates the collection of cards, providing methods to add cards and calculate the score, ensuring the internal state is not exposed directly.
+The [`Hand`](/Lab06/ClassLibrary/PlayerHand/Hand.cs) class encapsulates the collection of cards, providing methods to add cards and calculate the score, ensuring the internal state is not exposed directly.
 
-### Replace Magic Number with Symbolic Constant
+### Other usefull techniques that was/can be used :)
 
-Magic numbers in the score calculation logic were replaced with symbolic constants to improve readability and maintainability.
+- Extract variable
+- Inline Temp
+- Remove Assignments to Parameters
+- Substitution algorithm
+- Extract Class
+- Pull Up Constructor Body
+- Remove Parameter
+- Hide Method
+- Decompose Conditional
+- Consolidate Duplicate Conditional Fragments
