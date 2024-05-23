@@ -3,9 +3,9 @@ using ClassLibrary.Players;
 
 namespace ClassLibrary.GameStates
 {
-    public class MainMenuState : IGameState
+    public class MainMenuState : GameStateBase
     {
-        public void Handle(GameContext context)
+        public override void Handle(GameContext context)
         {
             Console.Clear();
             Console.WriteLine("Welcome to Blackjack!");
@@ -18,17 +18,17 @@ namespace ClassLibrary.GameStates
             switch (choice)
             {
                 case "1":
-                    context.SetState(new LoginState());
+                    ChangeState(context, new LoginState());
                     break;
                 case "2":
-                    context.SetState(new GameMenuState());
+                    ChangeState(context, new GameMenuState());
                     break;
                 case "3":
                     Environment.Exit(0);
                     break;
                 default:
                     Console.WriteLine("Invalid choice. Try again.");
-                    context.SetState(new MainMenuState());
+                    ChangeState(context, new MainMenuState());
                     break;
             }
         }
