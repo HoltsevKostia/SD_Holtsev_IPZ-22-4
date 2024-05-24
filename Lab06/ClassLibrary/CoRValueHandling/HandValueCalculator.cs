@@ -9,6 +9,11 @@ namespace ClassLibrary.CoRValueHandling
         public HandValueCalculator()
         {
             // Побудуємо ланцюжок обробників
+            handlerChain = BuildHandlerChain();
+        }
+
+        private ICardValueHandler BuildHandlerChain()
+        {
             var numberHandler = new NumberCardValueHandler();
             var faceHandler = new FaceCardValueHandler();
             var aceHandler = new AceCardValueHandler();
@@ -16,7 +21,7 @@ namespace ClassLibrary.CoRValueHandling
             numberHandler.SetNext(faceHandler);
             faceHandler.SetNext(aceHandler);
 
-            handlerChain = numberHandler;
+            return numberHandler;
         }
 
         public int CalculateTotalValue(List<Card> cards)

@@ -1,9 +1,9 @@
 ﻿
 namespace ClassLibrary.GameStates
 {
-    public class GameMenuState : IGameState
+    public class GameMenuState : GameStateBase
     {
-        public void Handle(GameContext context)
+        public override void Handle(GameContext context)
         {
             Console.WriteLine();
             Console.WriteLine("1. Start Game");
@@ -16,13 +16,13 @@ namespace ClassLibrary.GameStates
             switch (input)
             {
                 case "1":
-                    context.SetState(new PlayGameState(context.CurrentPlayer, context.PlayerManager));
+                    ChangeState(context, new PlayGameState(context.CurrentPlayer, context.PlayerManager));
                     break;
                 case "2":
-                    context.SetState(new HighScoreState());
+                    ChangeState(context, new HighScoreState());
                     break;
                 case "3":
-                    context.SetState(new MainMenuState());
+                    ChangeState(context, new MainMenuState());
                     break;
                 case "4":
                     Environment.Exit(0);

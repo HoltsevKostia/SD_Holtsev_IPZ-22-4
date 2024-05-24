@@ -7,14 +7,12 @@ namespace ClassLibrary.CoRValueHandling
     {
         public override int Handle(Card card, int currentTotal)
         {
-            if (card.Rank == Rank.Jack || card.Rank == Rank.Queen || card.Rank == Rank.King)
-            {
-                return 10;
-            }
-            else
-            {
-                return base.Handle(card, currentTotal);
-            }
+            return IsFaceCard(card) ? 10 : base.Handle(card, currentTotal);
+        }
+
+        private bool IsFaceCard(Card card)
+        {
+            return card.Rank == Rank.Jack || card.Rank == Rank.Queen || card.Rank == Rank.King;
         }
     }
 }
